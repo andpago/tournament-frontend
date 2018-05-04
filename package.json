@@ -1,0 +1,17 @@
+{
+  "name": "tournament-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "andpago",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^16.3.2",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "webpack": "^4.6.0"
+  }
+}
