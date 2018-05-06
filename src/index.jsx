@@ -16,7 +16,7 @@ function App(props) {
                 <Header />
                 <br />
         		<div className="container" id="content">
-                    <News data={ [1,2,3] }/>
+                    <News data={ [] }/>
                 </div>
             </div>
     	</Provider>

@@ -2,22 +2,30 @@ import React from 'react';
 import { Post } from './Post.jsx';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { setPosts } from '../actions/News.js';
+import { setPosts, setNextUrl } from '../actions/News.js';
 
 class News extends React.Component {
 	componentDidMount() {
-		fetch('/api/news?limit=10&offset=0&format=json').then(response => {
+		this.triggerUpdate();
+	}
+
+	triggerUpdate() {
+		fetch(this.props.nextUrl).then(response => {
 			if (response.status != 200) {
 				console.log('could not load news: status code ' + response.status);
 				return;
 			}
 
 			response.json().then(data => {
-				console.log('incoming data');
-				console.log(data);
-				this.props.setPosts(data);
+				this.props.setPosts(this.props.data.concat(data.results));
+				this.props.setNextUrl(data.next);
 			});
 		});
+	}
+
+	constructor(props) {
+		super(props);
+		this.triggerUpdate = this.triggerUpdate.bind(this);
 	}
 
 	render() {
@@ -38,8 +46,9 @@ class News extends React.Component {
 
 const mapStateToProps = store => ({
     data: store.newsReducer.data,
+    nextUrl: store.newsReducer.nextUrl,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ setPosts }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ setPosts, setNextUrl }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(News);
