@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { initStore } from './util/store';
 import { Provider } from 'react-redux';
 import { Header } from './components/Header.jsx';
-import { News } from './components/News.jsx';
+import News from './components/News.jsx';
 import 'bootstrap';
 import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 
@@ -14,8 +14,9 @@ function App(props) {
     	<Provider store={ store }>
             <div>
                 <Header />
+                <br />
         		<div className="container" id="content">
-                    <News />
+                    <News data={ [1,2,3] }/>
                 </div>
             </div>
     	</Provider>
