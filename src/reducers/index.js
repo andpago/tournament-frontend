@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
-import { newsReducer } from './News.js'
+import { newsReducer, lastAction } from './News.js'
 
 export const initReducers = combineReducers({
     newsReducer,
+    lastAction,
 });

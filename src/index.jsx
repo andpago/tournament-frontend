@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { initStore } from './util/store';
+import { store } from './util/store';
 import { Provider } from 'react-redux';
 import { Header } from './components/Header.jsx';
+import BottomDetector from './components/BottomDetector.jsx';
 import News from './components/News.jsx';
 import 'bootstrap';
 import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 
-const store = initStore([]);
 
 function App(props) {
     return (
@@ -18,6 +18,7 @@ function App(props) {
         		<div className="container" id="content">
                     <News data={ [] }/>
                 </div>
+                <BottomDetector />
             </div>
     	</Provider>
     );

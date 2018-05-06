@@ -13,3 +13,6 @@ export function initStore(additionalMiddleware = []) {
         composeWithDevTools(applyMiddleware(...additionalMiddleware, ...middleware)),
     );
 }
+
+
+export const store = initStore([]);

@@ -1,5 +1,6 @@
 import update from 'react-addons-update';
 import { ACTION_SET_POSTS, ACTION_SET_NEXT_POSTS_URL } from '../actions/News.js';
+import { ACTION_AT_BOTTOM } from '../actions/BottomDetector.js';
 
 const PAGE_SIZE = '10';
 const NEWS_LOAD_URL = '/api/news?limit=' + PAGE_SIZE + '&offset=0&format=json';
@@ -25,4 +26,8 @@ export const newsReducer = function(store = initState, action) {
 			return store;
 		}
 	}
+}
+
+export const lastAction = function(store = null, action) {
+	return action;
 }
