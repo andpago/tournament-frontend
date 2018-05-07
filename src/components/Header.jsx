@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export function Header(props) {
     return (
@@ -13,16 +14,16 @@ export function Header(props) {
   <div className="collapse navbar-collapse" id="navbarSupportedContent">
     <ul className="navbar-nav mr-auto">
       <li className="nav-item active">
-        <a className="nav-link" href="#">Новости <span className="sr-only">(current)</span></a>
+        <Link className="nav-link" to="/">Новости <span className="sr-only">(current)</span></Link>
       </li>
       <li className="nav-item">
-        <a className="nav-link" href="#">Чемпионаты</a>
+        <Link className="nav-link" to="/tournaments">Чемпионаты</Link>
       </li>
       <li className="nav-item">
-        <a className="nav-link" href="#">Решения</a>
+        <Link className="nav-link" to="/solutions">Решения</Link>
       </li>
       <li className="nav-item">
-        <a className="nav-link" href="#">Профиль</a>
+        <Link className="nav-link" to="/profile">Профиль</Link>
       </li>
     </ul>
     <form className="form-inline my-2 my-lg-0" action="/login" method="POST">
