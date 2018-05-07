@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { setTournaments, setNextTournamentsUrl } from '../actions/Tournaments.js';
 import { ACTION_AT_BOTTOM } from '../actions/BottomDetector.js';
 import { store } from '../util/store.js';
+import Tournament from './Tournament.jsx';
 
 class Tournaments extends React.Component {
 	componentDidMount() {
@@ -42,11 +43,11 @@ class Tournaments extends React.Component {
 	}
 
 	render() {
-		console.log('rerendering news');
+		console.log('rerendering tournaments');
 		console.log(this.props);
 
 		const posts = this.props.data.map(function(postData, index) {
-			return <Post data={ postData } key={ index } />;
+			return <Tournament data={ postData } key={ index } />;
 		});
 
 		return (

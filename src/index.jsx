@@ -8,14 +8,16 @@ import News from './components/News.jsx';
 import Tournaments from './components/Tournaments.jsx';
 import 'bootstrap';
 import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, withRouter } from 'react-router-dom';
 
 function App(props) {
+    const HeaderWithRouter = withRouter(Header);
+
     return (
     	<Provider store={ store }>
             <BrowserRouter>
                 <div>
-                    <Header />
+                    <HeaderWithRouter />
                     <br />
             		<div className="container" id="content">
                         <Switch>

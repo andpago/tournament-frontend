@@ -1,7 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export function Header(props) {
+function NavItem(props) {
+  return (
+    <li className={ 'nav-item ' + ((props.location == props.path) ? 'active' : '')}>
+        <Link className="nav-link" to={ props.path }>{ props.text }</Link>
+    </li>
+  );
+}
+
+export class Header extends React.Component {
+  render() {
+    const path = this.props.location.pathname;
+
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
   <a className="navbar-brand" href="#">Турнир</a>
@@ -13,18 +24,10 @@ export function Header(props) {
 
   <div className="collapse navbar-collapse" id="navbarSupportedContent">
     <ul className="navbar-nav mr-auto">
-      <li className="nav-item active">
-        <Link className="nav-link" to="/">Новости <span className="sr-only">(current)</span></Link>
-      </li>
-      <li className="nav-item">
-        <Link className="nav-link" to="/tournaments">Чемпионаты</Link>
-      </li>
-      <li className="nav-item">
-        <Link className="nav-link" to="/solutions">Решения</Link>
-      </li>
-      <li className="nav-item">
-        <Link className="nav-link" to="/profile">Профиль</Link>
-      </li>
+      <NavItem path="/" location={ path } text="Новости" />
+      <NavItem path="/tournaments" location={ path } text="Чемпионаты" />
+      <NavItem path="/solutions" location={ path } text="Решения" />
+      <NavItem path="/profile" location={ path } text="Профиль" />
     </ul>
     <form className="form-inline my-2 my-lg-0" action="/login" method="POST">
       <input className="form-control mr-sm-2" type="input" placeholder="логин" aria-label="логин" />
@@ -34,4 +37,6 @@ export function Header(props) {
   </div>
 </nav>
     );
+  }
 }
+
