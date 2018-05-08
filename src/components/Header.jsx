@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import LoginForm from './LoginForm.jsx';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 function NavItem(props) {
   return (
@@ -9,9 +12,10 @@ function NavItem(props) {
   );
 }
 
-export class Header extends React.Component {
+class Header extends React.Component {
   render() {
     const path = this.props.location.pathname;
+    const loginData = this.props.username ? <span className="badge badge-light">{this.props.username}</span> : <LoginForm />;
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -29,14 +33,16 @@ export class Header extends React.Component {
       <NavItem path="/solutions" location={ path } text="Решения" />
       <NavItem path="/profile" location={ path } text="Профиль" />
     </ul>
-    <form className="form-inline my-2 my-lg-0" action="/login" method="POST">
-      <input className="form-control mr-sm-2" type="input" placeholder="логин" aria-label="логин" />
-      <input className="form-control mr-sm-2" type="password" placeholder="пароль" aria-label="пароль" />
-      <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Войти</button>
-    </form>
+    { loginData }
   </div>
 </nav>
     );
   }
 }
+
+const mapStateToProps = store => ({
+    username: store.loginFormReducer.username,
+});
+
+export default connect(mapStateToProps, null)(Header);
 

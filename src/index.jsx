@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { store } from './util/store';
 import { Provider } from 'react-redux';
-import { Header } from './components/Header.jsx';
+import Header from './components/Header.jsx';
 import BottomDetector from './components/BottomDetector.jsx';
 import News from './components/News.jsx';
 import Tournaments from './components/Tournaments.jsx';
