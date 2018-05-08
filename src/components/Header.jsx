@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import LoginForm from './LoginForm.jsx';
+import LogoutForm from './LogoutForm.jsx';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -15,7 +16,7 @@ function NavItem(props) {
 class Header extends React.Component {
   render() {
     const path = this.props.location.pathname;
-    const loginData = this.props.username ? <span className="badge badge-light">{this.props.username}</span> : <LoginForm />;
+    const loginData = this.props.username ? [<span className="badge badge-light">{this.props.username}</span>, <LogoutForm />] : <LoginForm />;
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
