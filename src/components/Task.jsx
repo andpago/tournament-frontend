@@ -1,9 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import SolutionForm from './SolutionForm.jsx';
+import Cookies from 'js-cookie';
 
 class Task extends React.Component {
 	loadData(id) {
-		fetch('/api/tasks/' + id + '/').then(res => {
+		fetch('/api/tasks/' + id + '/', {
+			headers: new Headers({
+				'Authorization': 'Token ' + Cookies.get('key'),
+			}),
+		}).then(res => {
 			if (res.status != 200) {
 				console.log('could not load task with id = ' + id);
 				this.setState({task: null});
@@ -34,6 +40,12 @@ class Task extends React.Component {
 		if (this.state.task === 'loading') {
 			return <h3>Задача грузится...</h3>;
 		} else if (this.state.task) {
+			const solutions = this.state.task.solutions.map(solution => (
+				<div className="solution">
+					<p> { solution.text } </p>
+				</div>
+			));
+
 			return (
 				<div>
 					<h1 className="task-title">{ this.state.task.title }</h1>
@@ -42,8 +54,11 @@ class Task extends React.Component {
 					<h3>Задание:</h3>
 					<p className="task-text"> { this.state.task.text } </p>
 
+					<h3>Ваши решения:</h3>
+					{ solutions }
+
 					<h3>Решать:</h3>
-					<textarea />
+					<SolutionForm task_id={ this.state.task.id } />
 				</div>
 			);
 		} else {
