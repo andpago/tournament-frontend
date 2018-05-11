@@ -12,12 +12,20 @@ class SolutionForm extends React.Component {
 			}),
 			body: new FormData(document.getElementById('solution-form')),
 		});
+
+		this.props.reloadHook();
+		this.setState({
+			text: "",
+		});
 	}
 
 	constructor(props) {
 		super(props);
 
 		this.sendForm = this.sendForm.bind(this);
+		this.state = {
+			text: "",
+		}
 	}
 
 	render() {
@@ -25,7 +33,13 @@ class SolutionForm extends React.Component {
 			<form id="solution-form">
 				<div className="form-group">
 					<label htmlFor="solution">Текст решения</label>
-					<textarea className="form-control" name="text" id="solution-form-textarea" cols="30" rows="10" />
+					<textarea className="form-control" 
+							  name="text" 
+							  id="solution-form-textarea" 
+							  cols="30" 
+							  rows="10" 
+							  onChange={ () => { this.setState({text: this.value}); } }
+							  value={ this.state.text } />
 				</div>
 				<input name="task" type="hidden" value={ this.props.task_id } />
 				<button onClick={ this.sendForm } className="btn btn-primary"> Отправить </button>

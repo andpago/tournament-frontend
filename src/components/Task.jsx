@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import SolutionForm from './SolutionForm.jsx';
 import Cookies from 'js-cookie';
+import '../styles/Task.scss';
 
 class Task extends React.Component {
 	loadData(id) {
@@ -22,14 +23,19 @@ class Task extends React.Component {
 		});
 	}
 
-	componentDidMount() {
+	updateComponent() {
 		this.loadData(this.props.match.params.id);
+	}
+
+	componentDidMount() {
+		this.updateComponent();
 	}
 
 	constructor(props) {
 		super(props);
 
 		this.loadData = this.loadData.bind(this);
+		this.updateComponent = this.updateComponent.bind(this);
 
 		this.state = {
 			task: 'loading'
@@ -42,7 +48,10 @@ class Task extends React.Component {
 		} else if (this.state.task) {
 			const solutions = this.state.task.solutions.map(solution => (
 				<div className="solution">
-					<p> { solution.text } </p>
+					<p> 
+						{ solution.text }
+						{ solution.correct ? <span className="badge badge-success">верно</span> : <span className="badge badge-danger">неверно</span> }
+					</p>
 				</div>
 			));
 
@@ -58,7 +67,9 @@ class Task extends React.Component {
 					{ solutions }
 
 					<h3>Решать:</h3>
-					<SolutionForm task_id={ this.state.task.id } />
+					<SolutionForm 
+						task_id={ this.state.task.id } 
+						reloadHook={ () => {setTimeout(this.updateComponent, 100);} } />
 				</div>
 			);
 		} else {
