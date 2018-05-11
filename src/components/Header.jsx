@@ -16,7 +16,7 @@ function NavItem(props) {
 class Header extends React.Component {
   render() {
     const path = this.props.location.pathname;
-    const loginData = this.props.username ? [<span className="badge badge-light">{this.props.username}</span>, <LogoutForm />] : <LoginForm />;
+    const loginData = this.props.user ? [<span className="badge badge-light">{this.props.user.username}</span>, <LogoutForm />] : <LoginForm />;
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -42,7 +42,7 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = store => ({
-    username: store.loginFormReducer.username,
+    user: store.loginFormReducer.user,
 });
 
 export default connect(mapStateToProps, null)(Header);

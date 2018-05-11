@@ -1,6 +1,6 @@
 export const ACTION_LOGIN = 'ACTION_LOGIN';
 
-export const loginAction = username => ({
+export const loginAction = user => ({
 	type: ACTION_LOGIN,
-	username: username,
+	user
 });

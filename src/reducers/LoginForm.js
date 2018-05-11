@@ -3,14 +3,14 @@ import { ACTION_LOGIN } from '../actions/LoginForm.js';
 
 
 const initState = {
-	username: null,
+	user: null,
 };
 
 export const loginFormReducer = function(store = initState, action) {
 	switch (action.type) {
 		case ACTION_LOGIN: {
 			return update(store, {
-	           username: { $set: action.username },
+	           user: { $set: action.user },
 	        });
 		}
 		default: {

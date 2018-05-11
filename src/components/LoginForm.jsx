@@ -7,11 +7,29 @@ import { bindActionCreators } from 'redux';
 
 class LoginForm extends React.Component {
 	componentDidMount() {
-		const username = Cookies.get('username');
+		const key = Cookies.get('key');
 
-		if (username) {
-			this.props.loginAction(username);
+		if (key && !this.props.user) {
+			this.loginWithToken(key);
 		}
+	}
+
+	loginWithToken(token) {
+		console.log('logging in with token ' + token);
+
+		const headers = new Headers({
+			Authorization: 'Token ' + token,
+		});
+
+		console.log(headers);
+
+		fetch('/rest-auth/get_user_info/', {
+			headers,
+		}).then(response => {
+			response.json().then(json => {
+				this.props.loginAction(json);
+			});
+		});
 	}
 
 	sendForm(event) {
@@ -23,8 +41,8 @@ class LoginForm extends React.Component {
 				res.json().then(json => {
 					console.log('logged in as ' + this.state.login);
 					Cookies.set('key', json.key);
-					Cookies.set('username', this.state.login);
-					this.props.loginAction(this.state.login);
+
+					this.loginWithToken(json.key);
 				});
 			} else {
 				console.log('failed to login');
@@ -47,6 +65,7 @@ class LoginForm extends React.Component {
 		}
 		this.sendForm = this.sendForm.bind(this);
 		this.changeLogin = this.changeLogin.bind(this);
+		this.loginWithToken = this.loginWithToken.bind(this);
 	}
 
 	render() {
