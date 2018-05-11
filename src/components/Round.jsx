@@ -34,10 +34,19 @@ class Round extends React.Component {
 		if (this.state.round === 'loading') {
 			return <h3>Раунд грузится...</h3>;
 		} else if (this.state.round) {
+			let badges = [];
+			if (this.state.round.is_selection) {
+				badges.push(<span className="badge badge-warning">отборочный</span>);
+			}
+			if (this.state.round.is_final) {
+				badges.push(<span className="badge badge-danger">финал</span>);
+			}
+
 			return (
 				<div>
-					<h1 className="round-title">{ this.state.round.title }</h1>
+					<h1 className="round-title">{ this.state.round.title } { badges }</h1>
 					<Link to={ '/tournament/' + this.state.round.tournament }>Перейти к чемпионату</Link>
+
 					<p className="round-description"> { this.state.round.description } </p>
 					<h3>Таски:</h3>
 					<ol>
