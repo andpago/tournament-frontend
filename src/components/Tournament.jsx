@@ -53,7 +53,7 @@ class Tournament extends React.Component {
 				</div>
 			);
 		} else {
-			return <h1>Такого чемпионата нет</h1>;
+			return <h1>Такого раунда нет</h1>;
 		}
 	}
 }
