@@ -31,12 +31,9 @@ class Task extends React.Component {
 	}
 
 	render() {
-		console.log('props', this.props);
-
 		if (this.state.task === 'loading') {
 			return <h3>Задача грузится...</h3>;
 		} else if (this.state.task) {
-			console.log('task', this.state.task);
 			return (
 				<div>
 					<h1 className="task-title">{ this.state.task.title }</h1>

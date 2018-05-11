@@ -31,12 +31,9 @@ class Tournament extends React.Component {
 	}
 
 	render() {
-		console.log('props', this.props);
-
 		if (this.state.tournament === 'loading') {
 			return <h3>Чемпионат грузится...</h3>;
 		} else if (this.state.tournament) {
-			console.log('tournament', this.state.tournament);
 			return (
 				<div>
 					<h1 className="tournament-title">{ this.state.tournament.title }</h1>
@@ -53,7 +50,7 @@ class Tournament extends React.Component {
 				</div>
 			);
 		} else {
-			return <h1>Такого раунда нет</h1>;
+			return <h1>Такого чемпионата нет</h1>;
 		}
 	}
 }

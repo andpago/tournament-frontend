@@ -31,12 +31,9 @@ class Round extends React.Component {
 	}
 
 	render() {
-		console.log('props', this.props);
-
 		if (this.state.round === 'loading') {
 			return <h3>Раунд грузится...</h3>;
 		} else if (this.state.round) {
-			console.log('round', this.state.round);
 			return (
 				<div>
 					<h1 className="round-title">{ this.state.round.title }</h1>
@@ -54,7 +51,7 @@ class Round extends React.Component {
 				</div>
 			);
 		} else {
-			return <h1>Такого чемпионата нет</h1>;
+			return <h1>Такого раунда нет</h1>;
 		}
 	}
 }
