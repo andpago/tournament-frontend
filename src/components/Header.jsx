@@ -18,9 +18,14 @@ class Header extends React.Component {
     const path = this.props.location.pathname;
     const loginData = this.props.user ? [<span className="badge badge-light">{this.props.user.username}</span>, <LogoutForm />] : <LoginForm />;
 
+    const userLinks = this.props.user ? [
+      <NavItem path="/my_tournaments" location={ path } text="Мои чемпионаты" />,
+      <NavItem path="/my_solutions" location={ path } text="Мои решения" />,
+    ] : null;
+
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a className="navbar-brand" href="#">Турнир</a>
+  <Link className="navbar-brand" to="/">Турнир</Link>
   <button className="navbar-toggler" type="button" data-toggle="collapse"
   data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
   aria-expanded="false" aria-label="Toggle navigation">
@@ -31,8 +36,8 @@ class Header extends React.Component {
     <ul className="navbar-nav mr-auto">
       <NavItem path="/" location={ path } text="Новости" />
       <NavItem path="/tournaments" location={ path } text="Чемпионаты" />
-      <NavItem path="/solutions" location={ path } text="Решения" />
       <NavItem path="/profile" location={ path } text="Профиль" />
+      { userLinks }
     </ul>
     { loginData }
   </div>
