@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class Round extends React.Component {
 	loadData(id) {
@@ -34,13 +35,18 @@ class Round extends React.Component {
 		if (this.state.round === 'loading') {
 			return <h3>Раунд грузится...</h3>;
 		} else if (this.state.round) {
-			let badges = [];
+			const badges = [];
+
 			if (this.state.round.is_selection) {
 				badges.push(<span className="badge badge-warning">отборочный</span>);
 			}
 			if (this.state.round.is_final) {
 				badges.push(<span className="badge badge-danger">финал</span>);
 			}
+			if (this.props.user && this.props.user.rounds.includes(this.state.round.id)) {
+				badges.push(<span className="badge badge-primary">вы участвуете</span>);
+			}
+
 
 			return (
 				<div>
@@ -65,4 +71,8 @@ class Round extends React.Component {
 	}
 }
 
-export default Round;
+const mapStateToProps = store => ({
+    user: store.loginFormReducer.user,
+});
+
+export default connect(mapStateToProps, null)(Round);
