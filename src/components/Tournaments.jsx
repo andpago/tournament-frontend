@@ -1,5 +1,4 @@
 import React from 'react';
-import { Post } from './Post.jsx';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setTournaments, setNextTournamentsUrl } from '../actions/Tournaments.js';

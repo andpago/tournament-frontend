@@ -1,5 +1,5 @@
 import React from 'react';
-import { Post } from './Post.jsx';
+import { PostPreview } from './PostPreview.jsx';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setPosts, setNextUrl } from '../actions/News.js';
@@ -46,7 +46,7 @@ class News extends React.Component {
 		console.log(this.props);
 
 		const posts = this.props.data.map(function(postData, index) {
-			return <Post data={ postData } key={ index } />;
+			return <PostPreview data={ postData } key={ index } />;
 		});
 
 		return (
