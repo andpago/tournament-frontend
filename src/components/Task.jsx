@@ -64,7 +64,7 @@ class Task extends React.Component {
 
 			const solutionsBlock = this.state.task.solutions ? solutions : null;
 
-			const latex = this.state.task.text.split('\n').map(par => (<p><Latex>{ par }</Latex></p>));
+			const latex = this.state.task.text.split('\n\n').map(par => (<p><Latex>{ par }</Latex></p>));
 
 			return (
 				<div>
