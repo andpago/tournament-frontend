@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import '../styles/TournamentPreview.scss';
 
 export default function TournamentPreview(props) {
-	console.log(props);
 
 	const rounds = props.data.rounds.map((round, index) => {
 		return <li key={ index }> {round.title}</li>;

@@ -7,7 +7,6 @@ class BottomDetector extends React.Component {
 	componentDidMount() {
 		window.onscroll = ev => {
 		    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-		    	console.log('bottom detected');
 		        this.props.atBottomAction();
 		    }
 		};

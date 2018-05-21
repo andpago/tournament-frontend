@@ -12,7 +12,6 @@ class Tournaments extends React.Component {
 	}
 
 	triggerUpdate() {
-		console.log('trying to load more posts...');
 		fetch(this.props.nextUrl).then(response => {
 			if (response.status != 200) {
 				console.log('could not load news: status code ' + response.status);
@@ -42,9 +41,6 @@ class Tournaments extends React.Component {
 	}
 
 	render() {
-		console.log('rerendering tournaments');
-		console.log(this.props);
-
 		const posts = this.props.data.map(function(postData, index) {
 			return <TournamentPreview data={ postData } key={ index } />;
 		});

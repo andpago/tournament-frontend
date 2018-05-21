@@ -6,7 +6,6 @@ class Round extends React.Component {
 	loadData(id) {
 		fetch('/api/rounds/' + id + '/').then(res => {
 			if (res.status != 200) {
-				console.log('could not load round with id = ' + id);
 				this.setState({round: null});
 				return;
 			}

@@ -16,7 +16,6 @@ class Task extends React.Component {
 			}),
 		}).then(res => {
 			if (res.status != 200) {
-				console.log('could not load task with id = ' + id);
 				this.setState({task: null});
 				return;
 			}
@@ -50,19 +49,23 @@ class Task extends React.Component {
 		if (this.state.task === 'loading') {
 			return <h3>Задача грузится...</h3>;
 		} else if (this.state.task) {
+
 			const solutions = this.state.task.solutions.map(solution => (
-				<div className="solution-list">
-					<h3>Ваши решения:</h3>
-					<div className="solution">
-						<p> 
-							{ solution.text }
-							{ solution.correct ? <span className="badge badge-success">верно</span> : <span className="badge badge-danger">неверно</span> }
-						</p>
-					</div>
+				<div className="solution">
+					<p> 
+						{ solution.text }
+						{ solution.correct ? <span className="badge badge-success">верно</span> : <span className="badge badge-danger">неверно</span> }
+					</p>
 				</div>
 			));
+			
 
-			const solutionsBlock = this.state.task.solutions ? solutions : null;
+			const solutionsBlock = solutions ? (
+				<div className="solution-list">
+					<h3>Ваши решения:</h3>
+					{ solutions }
+				</div>
+			) : null;
 
 			const latex = this.state.task.text.split('\n\n').map(par => (<p><Latex>{ par }</Latex></p>));
 
@@ -77,7 +80,7 @@ class Task extends React.Component {
 					{ latex }
 
 					
-					{ solutions }
+					{ solutionsBlock }
 
 					<h3>Решать:</h3>
 					<SolutionForm 

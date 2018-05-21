@@ -12,10 +12,8 @@ class News extends React.Component {
 	}
 
 	triggerUpdate() {
-		console.log('trying to load more posts...');
 		fetch(this.props.nextUrl).then(response => {
 			if (response.status != 200) {
-				console.log('could not load news: status code ' + response.status);
 				return;
 			}
 
@@ -32,9 +30,7 @@ class News extends React.Component {
 
 		store.subscribe(() => {
 			setTimeout(() => {
-				console.log('subsciption called, lastAction.type == ' + this.props.lastAction.type);
 				if (this.props.lastAction.type == ACTION_AT_BOTTOM) {
-					console.log('news component updates');
 					this.triggerUpdate();
 				}
 			}, 100); // FIXME: this is a very bad practice, should be removed
@@ -42,8 +38,6 @@ class News extends React.Component {
 	}
 
 	render() {
-		console.log('rerendering news');
-		console.log(this.props);
 
 		const posts = this.props.data.map(function(postData, index) {
 			return <PostPreview data={ postData } key={ index } />;

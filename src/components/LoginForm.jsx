@@ -15,13 +15,9 @@ class LoginForm extends React.Component {
 	}
 
 	loginWithToken(token) {
-		console.log('logging in with token ' + token);
-
 		const headers = new Headers({
 			Authorization: 'Token ' + token,
 		});
-
-		console.log(headers);
 
 		fetch('/rest-auth/get_user_info/', {
 			headers,
@@ -54,8 +50,6 @@ class LoginForm extends React.Component {
 						}
 					});
 				}
-
-				console.log('failed to login');
 			}
 		});
 

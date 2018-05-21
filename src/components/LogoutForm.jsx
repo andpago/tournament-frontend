@@ -12,8 +12,6 @@ class LogoutForm extends React.Component {
 
 		fetch('/rest-auth/logout/', {
 			method: 'POST',
-		}).then((res) => {
-			console.log(res);
 		});
 	}
 

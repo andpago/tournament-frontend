@@ -29,6 +29,5 @@ export const newsReducer = function(store = initState, action) {
 }
 
 export const lastAction = function(store = null, action) {
-	console.log('setting lastAction.type to ' + action.type);
 	return action;
 }

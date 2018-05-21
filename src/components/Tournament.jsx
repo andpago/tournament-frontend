@@ -5,7 +5,6 @@ class Tournament extends React.Component {
 	loadData(id) {
 		fetch('/api/tournaments/' + id + '/').then(res => {
 			if (res.status != 200) {
-				console.log('could not load tournament with id = ' + id);
 				this.setState({tournament: null});
 				return;
 			}

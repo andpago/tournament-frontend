@@ -20,6 +20,10 @@ import Post from './components/Post.jsx';
 import Footer from './components/Footer.jsx';
 import './styles/main.scss';
 
+import Centrifuge from 'centrifuge';
+
+console.log(Centrifuge);
+
 function App(props) {
     const HeaderWithRouter = withRouter(Header);
 
