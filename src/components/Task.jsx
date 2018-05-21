@@ -4,6 +4,10 @@ import SolutionForm from './SolutionForm.jsx';
 import Cookies from 'js-cookie';
 import '../styles/Task.scss';
 
+const Latex = require('react-latex');
+
+// import '../styles/katex.min.css';
+
 class Task extends React.Component {
 	loadData(id) {
 		fetch('/api/tasks/' + id + '/', {
@@ -55,13 +59,17 @@ class Task extends React.Component {
 				</div>
 			));
 
+			const latex = this.state.task.text.split('\n').map(par => (<p><Latex>{ par }</Latex></p>));
+
 			return (
 				<div>
 					<h1 className="task-title">{ this.state.task.title }</h1>
 
 					<Link to={ '/round/' + this.state.task.round }>Перейти к раунду</Link>
 					<h3>Задание:</h3>
-					<p className="task-text"> { this.state.task.text } </p>
+
+
+					{ latex }
 
 					<h3>Ваши решения:</h3>
 					{ solutions }
