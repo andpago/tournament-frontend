@@ -17,6 +17,8 @@ import Page404 from './components/Page404.jsx';
 import PageMyTournaments from './components/PageMyTournaments.jsx';
 import PageMySolutions from './components/PageMySolutions.jsx';
 import Post from './components/Post.jsx';
+import Footer from './components/Footer.jsx';
+import './styles/main.scss';
 
 function App(props) {
     const HeaderWithRouter = withRouter(Header);
@@ -49,6 +51,7 @@ function App(props) {
                         </Switch>
                     </div>
                     <BottomDetector />
+                    <Footer />
                 </div>
             </BrowserRouter>
     	</Provider>

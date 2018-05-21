@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/TournamentPreview.scss';
 
 export default function TournamentPreview(props) {
 	console.log(props);
@@ -9,14 +10,14 @@ export default function TournamentPreview(props) {
 	});
 
 	return (
-		<div className="tournament col-12 post">
-			<h4 className="post-title">{ props.data.title }</h4>
+		<div className="tournament-preview col-12">
+			<h4 className="tounament-preview-title">{ props.data.title }</h4>
 			<p>{ props.data.description }</p>
 			<ul>
 				{ rounds }
 			</ul>
 			<Link to={ "/tournament/" + props.data.id }>
-				<button className="btn">
+				<button className="btn btn-primary">
 					Перейти к чемпионату
 				</button>
 			</Link>

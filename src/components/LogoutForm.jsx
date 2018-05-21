@@ -3,6 +3,7 @@ import { loginAction } from '../actions/LoginForm.js';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Cookies from 'js-cookie';
+import '../styles/LogoutForm.scss';
 
 class LogoutForm extends React.Component {
 	logout() {
@@ -23,10 +24,17 @@ class LogoutForm extends React.Component {
 	}
 
 	render() {
-		return <button className="btn" onClick={ this.logout }>Выйти</button>
+		return ([
+			<span className="logout-form-username">{ this.props.user.username } </span>,
+			<button className="btn" onClick={ this.logout }>Выйти</button>
+		]);
 	}
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({ loginAction }, dispatch);
 
-export default connect(null, mapDispatchToProps)(LogoutForm);
+const mapStateToProps = store => ({
+    user: store.loginFormReducer.user,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LogoutForm);

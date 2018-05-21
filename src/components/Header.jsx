@@ -16,7 +16,9 @@ function NavItem(props) {
 class Header extends React.Component {
   render() {
     const path = this.props.location.pathname;
-    const loginData = this.props.user ? [<span className="badge badge-light">{this.props.user.username}</span>, <LogoutForm />] : <LoginForm />;
+    const loginData = this.props.user ? 
+        <LogoutForm />: 
+        <LoginForm />;
 
     const userLinks = this.props.user ? [
       <NavItem path="/my_tournaments" location={ path } text="Мои чемпионаты" />,
