@@ -16,6 +16,7 @@ import Profile from './components/Profile.jsx';
 import Page404 from './components/Page404.jsx';
 import PageMyTournaments from './components/PageMyTournaments.jsx';
 import PageMySolutions from './components/PageMySolutions.jsx';
+import Post from './components/Post.jsx';
 
 function App(props) {
     const HeaderWithRouter = withRouter(Header);
@@ -40,6 +41,7 @@ function App(props) {
                             <Route path='/tournament/:id' component={ Tournament } />
                             <Route path='/round/:id' component={ Round } />
                             <Route path='/task/:id' component={ Task } />
+                            <Route path='/post/:id' component={ Post } />
                             <Route path='/my_tournaments' component={ PageMyTournaments } />
                             <Route path='/my_solutions' component={ PageMySolutions } />
                             <Route path='/404' component={ Page404 } />
